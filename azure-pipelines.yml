@@ -95,7 +95,7 @@ steps:
   # Copies the generated *.jar file to the staging directory.
   # This is done for release versions only.
   - task: CopyFiles@2
-    condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  #  condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(system.defaultworkingdirectory)'
@@ -110,12 +110,12 @@ steps:
       echo $(version)
       VERSION=$(version)
       echo "$VERSION" > $(System.DefaultWorkingDirectory)/VERSION
-    condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  #  condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
 
   # Copies the VERSION file containing the build id (ex: 1.1.13-SNAPSHOT) to the staging directory
   # This is done for release versions only.
   - task: CopyFiles@2
-    condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  #  condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
     displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
     inputs:
       SourceFolder: '$(System.Defaultworkingdirectory)'
@@ -127,7 +127,7 @@ steps:
   # for each of the three release pipelines will cause conflicts.
   # This is done for release versions only.
   - task: PublishBuildArtifacts@1
-    condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  #  condition: and(eq(variables.currentImage, 'ubuntu-16.04'), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
     displayName: 'Publish Build Artifacts'
     inputs:
       PathtoPublish: '$(build.artifactstagingdirectory)'
